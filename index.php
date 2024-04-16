@@ -6,12 +6,16 @@ $message = '';
 
 
 if (!isset($_GET['length'])) {
-  // $message = 'Attenzione la password è di 0 caratteri';
+  $message = 'Attenzione la password è di 0 caratteri';
 } else {
   $psw = generateString($_GET['length']);
   $message = 'La password è:' . $message ;
-}
+  session_start();
 
+  $_SESSION ['newpassword'] = $psw;
+  
+  header('Location: ./visibilityPsw.php');
+}
 
 
 
@@ -33,6 +37,8 @@ if (!isset($_GET['length'])) {
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -41,18 +47,25 @@ if (!isset($_GET['length'])) {
       <h1>Strong Password Generator</h1>
       <h4>Genera una password sicura</h4>
 
-      <div class=" text-start ">
-        <form action="index.php" method="GET">
-          <label for="length" class="form-label">Lunghezza della Password:</label>
-          <input type="number" class="form-control w-25" id="length" name="length">
-          <button class="btn btn-primary " type='submit'>Genera Password</button>
-          <button class="btn btn-secondary ">Annulla</button>
+      <div class="col box">
+      <form action="index.php" method="GET">
+          <div class="d-flex justify-content-evenly   align-items-center">
+            <label for="length" class="form-label">Lunghezza della Password:</label>
+            <input type="number" class="form-control w-25 my-3" id="length" name="length">
+          </div>
+          <div class="">
+            <button class="btn btn-primary mx-3" type='submit'>Genera Password</button>
+            <button class="btn btn-secondary m-3 ">Annulla</button>
+          </div>
         </form>
-
-        <span>
-          <?php echo $message . $psw ?>
-        </span>
       </div>
+     
+        
+
+        <span class="my-4">
+          <?php echo $message ; $psw ?>
+        </span>
+     
     </div>
   </div>
   
