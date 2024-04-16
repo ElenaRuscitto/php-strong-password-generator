@@ -5,19 +5,33 @@ $psw;
 $message = '';
 
 
-if (!isset($_GET['length'])) {
-  $message = 'Attenzione la password è di 0 caratteri';
-} else {
-  $psw = generateString($_GET['length']);
-  $message = 'La password è:' . $message ;
-  session_start();
+// if (!isset($_GET['length'])) {
+//   $message = 'Attenzione la password è di 0 caratteri';
+// } else {
+//   $psw = generateString($_GET['length']);
+//   $message = 'La password è:' . $message ;
+//   session_start();
 
-  $_SESSION ['newpassword'] = $psw;
+//   $_SESSION ['newpassword'] = $psw;
   
-  header('Location: ./visibilityPsw.php');
-}
+//   header('Location: ./visibilityPsw.php');
+// }
 
+if (isset($_GET['length'])) {
+  if (!empty($_GET['length'])) {
+    $psw = generateString($_GET['length']);
+    $message = 'La password è:' . $message ;
+    session_start();
 
+    $_SESSION ['newpassword'] = $psw;
+    
+    header('Location: ./visibilityPsw.php');
+  }else {
+    $message = 'Attenzione la password è di 0 caratteri';
+  }
+  
+  
+} 
 
   
 
@@ -53,18 +67,21 @@ if (!isset($_GET['length'])) {
             <label for="length" class="form-label">Lunghezza della Password:</label>
             <input type="number" class="form-control w-25 my-3" id="length" name="length">
           </div>
+        
           <div class="">
             <button class="btn btn-primary mx-3" type='submit'>Genera Password</button>
             <button class="btn btn-secondary m-3 ">Annulla</button>
           </div>
         </form>
+
+      
       </div>
      
-        
+      <span class="my-4">
+            <?php echo $message?>
+          </span>
 
-        <span class="my-4">
-          <?php echo $message ; $psw ?>
-        </span>
+       
      
     </div>
   </div>
