@@ -1,5 +1,5 @@
 <?php  
-require_once __DIR__ . './data/function.php';
+require_once __DIR__ . '/data/function.php';
 
 $psw;
 $message = '';
@@ -25,7 +25,7 @@ if (isset($_GET['length'])) {
 
     $_SESSION ['newpassword'] = $psw;
     
-    header('Location: ./visibilityPsw.php');
+    header('Location: visibilityPsw.php');
   }else {
     $message = 'Attenzione la password è di 0 caratteri';
   }

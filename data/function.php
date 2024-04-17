@@ -15,6 +15,7 @@ function generateString ($n){
 
   $generetePSW = '';
 
+  // estraggo un numero random che salvero in $generetePSW
   for ($i = 0; $i < $n; $i++) {
     $indice = rand(0, strlen($united) -1);
     $generetePSW .= $united[$indice];

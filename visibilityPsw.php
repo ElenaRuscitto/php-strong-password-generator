@@ -7,6 +7,9 @@ if(!isset($_SESSION['newpassword'])) {
   $realmail = $_SESSION['newpassword'];
 };
 
+
+
+
 ?> 
 
 <!DOCTYPE html>
